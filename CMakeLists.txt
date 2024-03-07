@@ -4,6 +4,7 @@ project (DiscordRPC)
 include(GNUInstallDirs)
 
 option(BUILD_EXAMPLES "Build example apps" ON)
+option(RUN_CLANG_FORMAT "Run clang-format automatically" OFF)
 
 # format
 file(GLOB_RECURSE ALL_SOURCE_FILES
@@ -15,7 +16,7 @@ file(GLOB_RECURSE ALL_SOURCE_FILES
 # Set CLANG_FORMAT_SUFFIX if you are using custom clang-format, e.g. clang-format-5.0
 find_program(CLANG_FORMAT_CMD clang-format${CLANG_FORMAT_SUFFIX})
 
-if (CLANG_FORMAT_CMD)
+if (CLANG_FORMAT_CMD AND RUN_CLANG_FORMAT)
     add_custom_target(
         clangformat
         COMMAND ${CLANG_FORMAT_CMD}
